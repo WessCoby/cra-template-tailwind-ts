@@ -1,7 +1,10 @@
 {
-  "name": "cra-template-tailwind-ts",
+  "name": "@wesnet/cra-template-tailwind-ts",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
+  "description": "A Create React App template with Tailwind css and TypeScript",
+  "author": "WessCoby <cobygiven@gmail.com>",
+  "main": "template.json",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -10,19 +13,38 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "concurrently": "^5.3.0",
+    "postcss-cli": "^8.1.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "3.4.3",
+    "tailwindcss": "^1.9.4",
     "typescript": "~3.7.2"
   },
   "scripts": {
+    "build:tailwind": "postcss tailwind.css -o src/index.css",
+    "watch:tailwind": "postcss tailwind.css -o src/index.css --watch",
+    "prestart": "yarn build:tailwind",
     "start": "react-scripts start",
+    "start:dev": "concurrently \"yarn watch:tailwind\" \"yarn start\"",
+    "prebuild": "yarn build:tailwind",
+    "clean-files": "rm -f ./src/index.css && rm -rf ./template/public ./template/src && rm -f ./template/README.md ./template/tailwind.config.js ./template/postcss.config.js ./template/tailwind.css ./template/gitignore ./template/tsconfig.json",
+    "copy-files": "cp -a ./src/. template/src && cp -a ./public/. template/public && cp postcss.config.js tailwind.css tailwind.config.js template/ && cp ./.gitignore ./template/gitignore && cp ./README_CRA.md ./template/README.md",
+    "prepublishOnly": "yarn clean-files && yarn copy-files",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wesscoby/cra-template-tailwind-ts",
+    "directory": "/"
+  },
+  "bugs": {
+    "url": "https://github.com/wesscoby/cra-template-tailwind-ts/issues"
   },
   "browserslist": {
     "production": [
@@ -35,5 +57,28 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "keywords": [
+    "react",
+    "create-react-app",
+    "cra-template",
+    "template",
+    "tailwind",
+    "tailwind-css",
+    "tailwindcss",
+    "react-tailwindcss",
+    "react-tailwind",
+    "react-tailwind-css",
+    "typescript",
+    "typescript-react"
+  ],
+  "files": [
+    "template",
+    "template.json"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest",
+    "access": "public"
   }
 }
