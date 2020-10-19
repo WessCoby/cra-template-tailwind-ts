@@ -1,0 +1,22 @@
+{
+  "package": {
+    "dependencies": {
+      "@testing-library/jest-dom": "^4.2.4",
+      "@testing-library/react": "^9.3.2",
+      "@testing-library/user-event": "^7.1.2",
+      "react": "^16.14.0",
+      "react-dom": "^16.14.0",
+      "react-scripts": "3.4.3",
+      "concurrently": "^5.3.0",
+      "postcss-cli": "^8.1.0",
+      "tailwindcss": "^1.9.4"
+    },
+    "scripts": {
+      "build:tailwind": "postcss tailwind.css -o src/index.css",
+      "watch:tailwind": "postcss tailwind.css -o src/index.css --watch",
+      "prestart": "yarn build:tailwind",
+      "start:dev": "concurrently \"yarn watch:tailwind\" \"yarn start\"",
+      "prebuild": "yarn build:tailwind"
+    }
+  }
+}
